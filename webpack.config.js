@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
@@ -8,7 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'public/js'),
     publicPath: '/public/js',
-    fileName: 'bundle.js'
+    filename: 'bundle.js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', 'scss'],
@@ -20,29 +19,36 @@ module.exports = {
     rules: [{
       test: /\.ts(x?)$/,
       loader: 'ts-loader',
-      exlcude: /node_modelus/
+      exclude: /node_modules/
     }, {
       test: /\.scss$/,
       use: [{
         loader: 'style-loader'
       }, {
-        loader: 'sass-loader',
+        loader: 'css-loader',
         options: {
           modules: true
         }
+      }, {
+        loader: 'sass-loader'
       }]
     }]
   },
   devServer: {
     contentBase: './public',
     writeToDisk: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    port: 8080,
+    open: true
   },
-  external: {
+  externals: {
     react: 'React',
-    'react-dom': 'ReactDom'
+    axios: 'axios',
+    recoil: 'Recoil',
+    'react-dom': 'ReactDOM',
+    'react-router-dom': 'ReactRouterDOM'
   },
-  plugin: [
+  plugins: [
     new CleanWebpackPlugin()
   ]
 }

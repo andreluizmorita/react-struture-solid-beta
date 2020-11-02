@@ -9,3 +9,10 @@ npm i -D eslint eslint-config-standard-with-typescript@11 eslint-plugin-import e
 npm i -D lint-staged husky
 
 npm i -D jest @types/jest ts-jest
+
+
+npm i react react-dom
+npm i -D @types/react @types/react-dom
+
+
+npm i -D webpack webpack-cli webpack-dev-server
